@@ -1,0 +1,50 @@
+.header {
+    width: 100%;
+    display: flex;
+    color: #fff;
+    background-color: blue;
+    align-items: center;
+    justify-content: center;
+}
+
+.nav {
+    width: 95%;
+    background-color: blue;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.links {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+}
+
+.link {
+    font-size: 1rem;
+    padding: 10px 30px;
+    font-weight: 500;
+}
+
+.link:hover {
+    background-color: #7bdeff;
+    color: blue;
+    transition: 0.2s;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+.title {
+    font-size: 2rem;
+    font-family: cursive;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    color: blue;
+}
