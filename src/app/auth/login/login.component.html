@@ -1,55 +1,32 @@
 <div class="example-container">
     <div class="form-container">
-        <mat-tab-group>
+        <mat-tab-group (selectedTabChange)="onTabChange()">
             <mat-tab label="User Login">
-                <form class="loginForm">
-                    <!-- <p>Login</p> -->
-                    <mat-form-field class="form-field" appearance="outline">
-                        <mat-label> E-mail
-                        </mat-label>
-                        <input matInput required>
-                        <!-- <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
-                        <span *ngIf="loginForm.controls.email.errors.['required']">This field is mandatory.</span>
-                        <span *ngIf="loginForm.controls.email.errors.['pattern']">This field is invalid.</span>
-                    </mat-error> -->
-                    </mat-form-field>
-                    <mat-form-field class="form-field" appearance="outline">
-                        <mat-label> Password
-                        </mat-label>
-                        <input matInput type="password">
-                        <!-- <mat-error *ngIf="loginForm.controls.password.['touched'] && loginForm.controls.password.['invalid']">
-                        <span *ngIf="loginForm.controls.password.errors.['required']">This field is mandatory.</span>
-                    </mat-error> -->
-                    
-                    </mat-form-field>
-                    <button mat-raised-button color="primary" type="submit">Log In</button>
-                </form>
+                <ng-container *ngTemplateOutlet="loginForm;context:{role:'user'}"></ng-container>
             </mat-tab>
             <mat-tab label="Admin Login">
-                <form class="loginForm">
-                    <!-- <p>Login</p> -->
-                    <mat-form-field class="form-field" appearance="outline">
-                        <mat-label> E-mail
-                        </mat-label>
-                        <input matInput required>
-                        <!-- <mat-error *ngIf="loginForm.controls.email.touched && loginForm.controls.email.invalid">
-                        <span *ngIf="loginForm.controls.email.errors.['required']">This field is mandatory.</span>
-                        <span *ngIf="loginForm.controls.email.errors.['pattern']">This field is invalid.</span>
-                    </mat-error> -->
-                    </mat-form-field>
-                    <mat-form-field class="form-field" appearance="outline">
-                        <mat-label> Password
-                        </mat-label>
-                        <input matInput type="password">
-                        <!-- <mat-error *ngIf="loginForm.controls.password.['touched'] && loginForm.controls.password.['invalid']">
-                        <span *ngIf="loginForm.controls.password.errors.['required']">This field is mandatory.</span>
-                    </mat-error> -->
-                    </mat-form-field>
-                    <button mat-raised-button color="primary" type="submit">Log In</button>
-                </form>
+                <ng-container *ngTemplateOutlet="loginForm;context:{role:'admin'}"></ng-container>
             </mat-tab>
-            <!-- <mat-tab label="Third"> Content 3 </mat-tab> -->
         </mat-tab-group>
 
     </div>
 </div>
+
+
+
+<ng-template #loginForm let-role="role">
+    <span class="text-red">{{error}}</span>
+    <form class="loginForm" (submit)="submit(role)">
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label class="capitalize">{{role}} Email
+            </mat-label>
+            <input matInput required [(ngModel)]="email" name="email" type="email">
+        </mat-form-field>
+        <mat-form-field class="form-field" appearance="outline">
+            <mat-label> Password
+            </mat-label>
+            <input matInput type="password" [(ngModel)]="password" name="password">
+        </mat-form-field>
+        <button mat-raised-button color="primary" type="submit">Log In</button>
+    </form>
+</ng-template>

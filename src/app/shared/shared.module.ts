@@ -7,6 +7,8 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatTabsModule } from '@angular/material/tabs'
+import { MatBadgeModule } from '@angular/material/badge'
+import { HttpClientModule } from "@angular/common/http";
 
 @NgModule({
     declarations: [
@@ -21,6 +23,7 @@ import { MatTabsModule } from '@angular/material/tabs'
         MatFormFieldModule,
         MatCheckboxModule,
         MatTabsModule,
+        MatBadgeModule,
         FormsModule
     ],
     exports: [
@@ -31,6 +34,7 @@ import { MatTabsModule } from '@angular/material/tabs'
         MatButtonModule,
         MatFormFieldModule,
         MatCheckboxModule,
+        MatBadgeModule,
         MatTabsModule,
         FormsModule
     ]

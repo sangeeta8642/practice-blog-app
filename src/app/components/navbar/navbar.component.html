@@ -4,21 +4,39 @@
             deepDive
         </div>
         <ul class="links">
-            <li class="link"  routerLink="/" routerLinkActive="active">
+            <li class="link" routerLink="/" routerLinkActive="active">
                 <!-- <a> -->
-                    Home
+                Home
                 <!-- </a> -->
             </li>
             <li class="link" routerLink="/favorites" routerLinkActive="active">
                 <!-- <a > -->
-                    Favorites
+                Favorites
                 <!-- </a> -->
             </li>
-            <li class="link" routerLink="/">
-                <!-- <a > -->
+            <ng-container *ngIf="user;else login">
+                <li class="link" (click)="logOut()">
+                    <!-- <a > -->
                     Log Out
-                <!-- </a> -->
+                    <!-- </a> -->
+                </li>
+            </ng-container>
+            <ng-template #login>
+
+                <li class="link" routerLink="/login">
+                    <!-- <a > -->
+                    Log In
+                    <!-- </a> -->
+                </li>
+            </ng-template>
+            <!-- <ng-container *ngIf="user"> -->
+
+            <li>
+                <!-- <mat-chip-list> -->
+                <mat-chip color="accent" selected *ngIf="user">{{user.name}}</mat-chip>
+                <!-- </mat-chip-list> -->
             </li>
+            <!-- </ng-container> -->
         </ul>
     </nav>
 </header>
