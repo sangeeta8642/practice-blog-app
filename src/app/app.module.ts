@@ -8,12 +8,14 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule } from '@angular/material/chips';
 import { ViewPostComponent } from './pages/view-post/view-post.component';
+import { UnAuthComponent } from './pages/un-auth/un-auth.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
-    ViewPostComponent
+    ViewPostComponent,
+    UnAuthComponent
   ],
   imports: [
     BrowserModule,

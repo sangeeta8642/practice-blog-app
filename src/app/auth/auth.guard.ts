@@ -27,8 +27,23 @@ export const isAuthenticate: CanActivateFn = async () => {
         return true
     } else {
 
-        router.navigate(['/login'])
+        router.navigate(['/un-auth'])
         return false
+    }
+    // if(authService.isAdmin())
+}
+export const Unauthenticated: CanActivateFn = async () => {
+    const authService: AuthService = inject(AuthService)
+    const router: Router = inject(Router)
+    const isUserAuth = await authService.isAuthenticate()
+    console.log("isUserAuth", isUserAuth);
+
+    if (isUserAuth) {
+        router.navigate(['/'])
+        return false
+    } else {
+
+        return true
     }
     // if(authService.isAdmin())
 }

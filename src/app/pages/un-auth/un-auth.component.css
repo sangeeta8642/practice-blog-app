@@ -1,0 +1,8 @@
+section{
+    height: 80dvh;
+    width: 100dvw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
