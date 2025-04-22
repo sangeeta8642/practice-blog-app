@@ -1,4 +1,5 @@
 .header {
+    /* position: fixed; */
     width: 100%;
     display: flex;
     color: #fff;
@@ -27,7 +28,7 @@
     font-weight: 500;
 }
 
-.link:hover {
+.link:hover, .active {
     background-color: #7bdeff;
     color: blue;
     transition: 0.2s;

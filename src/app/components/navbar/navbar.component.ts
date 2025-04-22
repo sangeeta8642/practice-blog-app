@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { userInterface } from 'src/app/utils/type.interface';
 
@@ -20,7 +21,8 @@ export class NavbarComponent implements OnInit {
 
   user: userInterface | undefined
   constructor(
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
   ) {
     this.authService.user$.subscribe((data) => {
       this.user = data as userInterface
@@ -31,6 +33,8 @@ export class NavbarComponent implements OnInit {
 
   logOut() {
     this.authService.clearUser()
+    this.router.navigate(['/'])
+
   }
 
   ngOnInit() {

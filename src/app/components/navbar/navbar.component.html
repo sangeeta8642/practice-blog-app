@@ -1,43 +1,48 @@
 <header class="header">
     <nav class="nav">
-        <div class="title">
-            deepDive
-        </div>
+        <div class="title">deepDive</div>
+
         <ul class="links">
-            <li class="link" routerLink="/" routerLinkActive="active">
-                <!-- <a> -->
+            <!-- Home -->
+            <li class="link" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
                 Home
-                <!-- </a> -->
             </li>
-            <li class="link" routerLink="/favorites" routerLinkActive="active">
-                <!-- <a > -->
-                Favorites
-                <!-- </a> -->
-            </li>
-            <ng-container *ngIf="user;else login">
-                <li class="link" (click)="logOut()">
-                    <!-- <a > -->
-                    Log Out
-                    <!-- </a> -->
+
+            <!-- Favorites (non-admin) -->
+            <ng-container *ngIf="user?.role !== 'admin'; else adminPage">
+                <li class="link" routerLink="/favorites" routerLinkActive="active"
+                    [routerLinkActiveOptions]="{exact:true}">
+                    Favorites
                 </li>
             </ng-container>
-            <ng-template #login>
 
-                <li class="link" routerLink="/login">
-                    <!-- <a > -->
-                    Log In
-                    <!-- </a> -->
+            <!-- Admin (admin only) -->
+            <ng-template #adminPage>
+                <li class="link" routerLink="/admin" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    My Posts
                 </li>
             </ng-template>
-            <!-- <ng-container *ngIf="user"> -->
 
+            <!-- Auth Links -->
+            <ng-container *ngIf="user; else login">
+                <li class="link" (click)="logOut()">
+                    Log Out
+                </li>
+            </ng-container>
+
+            <!-- Log In (if not authenticated) -->
+            <ng-template #login>
+                <li class="link" routerLink="/login" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">
+                    Log In
+                </li>
+            </ng-template>
+
+            <!-- Display User Name -->
             <li>
-                <!-- <mat-chip-list> -->
-                <mat-chip color="accent" selected *ngIf="user">{{user.name}}</mat-chip>
-                <!-- </mat-chip-list> -->
+                <mat-chip color="accent" selected *ngIf="user">
+                    {{ user.name }}
+                </mat-chip>
             </li>
-            <!-- </ng-container> -->
         </ul>
     </nav>
 </header>
-<!-- <router-outlet></router-outlet> -->

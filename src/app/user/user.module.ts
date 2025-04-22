@@ -13,7 +13,7 @@ import { SharedModule } from '../shared/shared.module';
     FavoritesComponent
   ],
   imports: [
-    CommonModule,
+    // CommonModule,
     SharedModule,
     UserRoutingModule
   ]

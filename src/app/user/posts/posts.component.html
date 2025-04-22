@@ -1,1 +1,17 @@
-<p>posts works!</p>
+<main class="main">
+    <section id="intro">
+        <h1 class="title">
+            <span style="color: white;background-color: blue;padding: 0px 15px;border-radius: 10px;">
+                deepDive</span>
+            is a place &#44; where ideas take flight, stories come to life, and curiosity knows no
+            bounds—welcome!
+        </h1>
+        <form class="form">
+            <input #searchValue class="input" type="text" matInput placeholder="Search your interest..."
+                (input)="searchPosts($event)">
+        </form>
+    </section>
+    <section id="cards">
+        <app-post-card [posts]="posts"></app-post-card>
+    </section>
+</main>

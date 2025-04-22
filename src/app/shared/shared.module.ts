@@ -7,18 +7,25 @@ import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatFormFieldModule } from "@angular/material/form-field";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatTabsModule } from '@angular/material/tabs'
+import { MatCardModule } from '@angular/material/card'
 import { MatBadgeModule } from '@angular/material/badge'
 import { HttpClientModule } from "@angular/common/http";
+import { CommonModule } from "@angular/common";
+import { ViewPostComponent } from "../pages/view-post/view-post.component";
 
 @NgModule({
     declarations: [
-        PostCardComponent
+        PostCardComponent,
+        // ViewPostComponent
     ],
     imports: [
         MatSlideToggleModule,
         MatInputModule,
+        CommonModule,
+        // PostCardComponent,
         MatButtonModule,
         ReactiveFormsModule,
+        MatCardModule,
         ReactiveFormsModule,
         MatFormFieldModule,
         MatCheckboxModule,
@@ -28,13 +35,17 @@ import { HttpClientModule } from "@angular/common/http";
     ],
     exports: [
         PostCardComponent,
+        CommonModule,
         ReactiveFormsModule,
+        PostCardComponent,
         MatSlideToggleModule,
         MatInputModule,
         MatButtonModule,
+        MatCardModule,
         MatFormFieldModule,
         MatCheckboxModule,
         MatBadgeModule,
+        // ViewPostComponent,
         MatTabsModule,
         FormsModule
     ]

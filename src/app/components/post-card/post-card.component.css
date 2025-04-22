@@ -1,0 +1,13 @@
+.cards {
+    width: 100dvw;
+    display: grid;
+    /* grid-column: 1/3; */
+    grid-template-columns: repeat(3, 1fr);
+    place-content: center;
+    place-items: center;
+    row-gap: 15px;
+}
+
+.card {
+    width: 32dvw;
+}

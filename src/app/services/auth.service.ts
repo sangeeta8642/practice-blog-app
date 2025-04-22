@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { userInterface } from "../utils/type.interface";
-import { BehaviorSubject } from "rxjs";
+import { BehaviorSubject, firstValueFrom } from "rxjs";
+import { Router } from "@angular/router";
 
 @Injectable({
     providedIn: 'root'
@@ -12,7 +13,10 @@ export class AuthService {
     user$ = this.userSubject.asObservable()
     // userData 
 
-    constructor() {
+    constructor(
+        // private router:Router
+
+    ) {
         const user = localStorage.getItem("user")
         // this.user = user ? JSON.parse(user) : null
         this.userData = user ? JSON.parse(user) : null
@@ -35,25 +39,28 @@ export class AuthService {
         return this.userSubject.value
     }
 
-    isAuthenticate() {
-        if (this.userData) {
+    async isAuthenticate() {
+        const data = await firstValueFrom(this.userSubject)
+        console.log("checking the auth", data);
+
+        if (data) {
             return true
         } else {
             return false
         }
     }
 
-    isAdmin() {
+    async isAdmin() {
+        const data = await firstValueFrom(this.userSubject)
 
-        this.userSubject.subscribe((data) => {
-            if (this.isAuthenticate() && data?.role === "admin") {
-                console.log("role", data?.role);
+        if (data?.role === "admin" && await this.isAuthenticate()) {
+            return true
+        } else {
+            return false
+        }
 
-                return true
-            } else {
-                return false
-            }
-        })
+
+        // console.log("user data", data);
 
     }
 }

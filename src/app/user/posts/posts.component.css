@@ -1,0 +1,36 @@
+.main {
+    height: 80%;
+    width: 100%;
+
+    /* background-color: yellow; */
+}
+
+#intro {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: blue;
+    align-items: center;
+}
+
+.title {
+    font-size: 3rem;
+    width: 75%;
+    font-family: cursive;
+    text-align: center;
+    line-height: normal;
+}
+
+.input {
+    width: 600px;
+    height: 40px;
+    border: 2px solid blue;
+    border-radius: 15px;
+    font-size: 20px;
+    padding: 5px 10px;
+}
+
+#cards{
+    width: 100dvw;
+}

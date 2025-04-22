@@ -7,11 +7,13 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 import { MatChipsModule } from '@angular/material/chips';
+import { ViewPostComponent } from './pages/view-post/view-post.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    ViewPostComponent
   ],
   imports: [
     BrowserModule,

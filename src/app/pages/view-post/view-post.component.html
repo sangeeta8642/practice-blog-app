@@ -1,0 +1,25 @@
+<!-- post-details.component.html -->
+<div class="post-details">
+    <section>
+        <img [src]="post.image" [alt]="post.title" class="post-image" />
+    </section>
+    <section>
+
+        <h3>{{ post.title }}</h3>
+        <p class="post-desc">{{ post.desc }}</p>
+        <p><strong>Admin ID:</strong> {{ post.admin }}</p>
+        <p><strong>Created At:</strong> {{ post.createdAt | date: 'medium' }}</p>
+        <div class="tags">
+            <strong>Tags:</strong>
+            <ul>
+                <li *ngFor="let tag of post.tags">{{ tag }}</li>
+            </ul>
+        </div>
+        <div class="categories">
+            <strong>Categories:</strong>
+            <ul>
+                <li *ngFor="let category of post.categories">{{ category }}</li>
+            </ul>
+        </div>
+    </section>
+</div>
