@@ -1,1 +1,8 @@
-<p>favorites works!</p>
+<section class="h-screen d-flex justify-center items-center">
+    <ng-container *ngIf="posts.length>0;else NoPosts">
+        <app-post-card [posts]="posts" [page]="'favorites'"></app-post-card>
+    </ng-container>
+    <ng-template #NoPosts>
+        <h3 class="">You Have No Favorite Article</h3>
+    </ng-template>
+</section>

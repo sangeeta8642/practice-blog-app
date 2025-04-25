@@ -1,2 +1,21 @@
-<p>posts works!</p>
-<app-post-card></app-post-card>
+<!-- <p>posts works!</p> -->
+
+<main>
+    <!-- <mat-tab-group (selectedTabChange)="onTabChange()"> -->
+    <section class="p-15px">
+        <button mat-raised-button color="primary" (click)="CreateNew()">+Add New Post</button>
+    </section>
+    <section>
+        <mat-tab-group>
+            <mat-tab label="Table View">
+                <ng-container></ng-container>
+            </mat-tab>
+            <mat-tab label="Card View">
+                <!-- <ng-container></ng-container> -->
+                <section>
+                    <app-post-card [posts]="posts"></app-post-card>
+                </section>
+            </mat-tab>
+        </mat-tab-group>
+    </section>
+</main>

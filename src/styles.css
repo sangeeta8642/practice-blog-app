@@ -15,6 +15,28 @@ body {
     text-transform: capitalize;
 }
 
-.text-red{
+.text-red {
     color: red;
+}
+
+.h-screen {
+    width: 100dvw;
+    height: 100dvh;
+
+}
+
+.d-flex {
+    display: flex;
+}
+
+.justify-center {
+    justify-content: center;
+}
+
+.items-center {
+    align-items: center;
+}
+
+.p-15px {
+    padding: 15px;
 }

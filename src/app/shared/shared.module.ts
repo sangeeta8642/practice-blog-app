@@ -37,7 +37,7 @@ import { ViewPostComponent } from "../pages/view-post/view-post.component";
         PostCardComponent,
         CommonModule,
         ReactiveFormsModule,
-        PostCardComponent,
+        // PostCardComponent,
         MatSlideToggleModule,
         MatInputModule,
         MatButtonModule,

@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppStateModel } from 'src/app/app.reducer';
+import { getUser } from 'src/app/ngrx/user/selectors/user.selector';
 import { AuthService } from 'src/app/services/auth.service';
 import { userInterface } from 'src/app/utils/type.interface';
 
@@ -22,11 +25,18 @@ export class NavbarComponent implements OnInit {
   user: userInterface | undefined
   constructor(
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private store: Store<AppStateModel>
   ) {
-    this.authService.user$.subscribe((data) => {
+    // this.authService.user$.subscribe((data) => {
+    //   this.user = data as userInterface
+    //   console.log("user", data);
+
+    // })
+
+    this.store.select(getUser).subscribe((data) => {
       this.user = data as userInterface
-      console.log("user", data);
+      console.log("user852", this.user);
 
     })
   }

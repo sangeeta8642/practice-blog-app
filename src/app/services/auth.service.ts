@@ -2,6 +2,9 @@ import { Injectable } from "@angular/core";
 import { userInterface } from "../utils/type.interface";
 import { BehaviorSubject, firstValueFrom } from "rxjs";
 import { Router } from "@angular/router";
+import { AppStateModel } from "../app.reducer";
+import { Store } from "@ngrx/store";
+import { clearUser, loginUser } from "../ngrx/user/actions/user.actions";
 
 @Injectable({
     providedIn: 'root'
@@ -10,11 +13,13 @@ import { Router } from "@angular/router";
 export class AuthService {
     userData: userInterface | undefined
     private userSubject = new BehaviorSubject<userInterface | null>(null)
+
     user$ = this.userSubject.asObservable()
     // userData 
 
     constructor(
         // private router:Router
+        private store: Store<AppStateModel>
 
     ) {
         const user = localStorage.getItem("user")
@@ -28,11 +33,13 @@ export class AuthService {
     setUser(user: userInterface) {
         this.userSubject.next(user)
         localStorage.setItem('user', JSON.stringify(user))
+        // this.store.dispatch(loginUser({ user }))
     }
 
     clearUser() {
         this.userSubject.next(null);
         localStorage.removeItem('user')
+        this.store.dispatch(clearUser())
     }
 
     getUser() {
