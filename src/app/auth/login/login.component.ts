@@ -63,7 +63,7 @@ export class LoginComponent implements OnInit {
 
         this.store.dispatch(loginUser({ user: userWithoutPassword }))
         // localStorage.setItem("user", JSON.stringify(user))
-        this.authService.setUser(user)
+        this.authService.setUser(userWithoutPassword)
         // this.router.navigate(['/'])
         this.router.navigateByUrl('/')
 

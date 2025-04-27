@@ -1,0 +1,22 @@
+.cantainer {
+  width: 100dvw;
+  height: 80dvh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.create-update-form {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+}
+
+.title {
+  font-size: 25px;
+  text-align: center;
+  color: blue;
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-bottom: 15px;
+}

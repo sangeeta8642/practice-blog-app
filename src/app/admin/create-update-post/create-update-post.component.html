@@ -1,15 +1,26 @@
-<main>
-    <form class="loginForm">
-        <mat-form-field class="form-field" appearance="outline">
-            <mat-label class="capitalize"> Email
-            </mat-label>
-            <input matInput required name="email" type="email">
-        </mat-form-field>
-        <mat-form-field class="form-field" appearance="outline">
-            <mat-label> Password
-            </mat-label>
-            <input matInput type="password" name="password">
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Log In</button>
-    </form>
+<main class="cantainer">
+  <form class="create-update-form" [formGroup]="postForm" (ngSubmit)="submit()">
+    <mat-label class="title">{{ route }} Post</mat-label>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label class="capitalize"> Title </mat-label>
+      <input matInput required type="text" formControlName="title" />
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Image </mat-label>
+      <input matInput type="text" formControlName="image" />
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Description </mat-label>
+      <textarea matInput type="text" formControlName="desc"></textarea>
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Tags (Separated by Commas) </mat-label>
+      <input matInput type="text" formControlName="postTag" />
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Categories (Separated by Commas) </mat-label>
+      <input matInput type="text" formControlName="postCat" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Submit</button>
+  </form>
 </main>
