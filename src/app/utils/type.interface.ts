@@ -1,5 +1,5 @@
 export interface userInterface {
-    id: string,
+    id: number,
     name: string,
     email: string,
     password?: string,
@@ -10,12 +10,12 @@ export interface userInterface {
 }
 
 export interface postInterface {
-    id: number,
+    id?: number,
     title: string,
     image: string,
     desc: string,
     admin: number,
-    createdAt: string,
+    createdAt?: string | Date | number ,
     tags: string[],
-    categories: string[]
+    category: string[]
 }

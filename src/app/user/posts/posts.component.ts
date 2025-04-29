@@ -1,5 +1,9 @@
-import { Component, Input, ViewChild } from '@angular/core';
-import { Allposts } from 'src/app/utils/constants';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { AppStateModel } from 'src/app/app.reducer';
+import { getPosts } from 'src/app/ngrx/posts/selectors/posts.selectors';
+import { PostsService } from 'src/app/services/posts.service';
+// import { Allposts } from 'src/app/utils/constants';
 import { postInterface } from 'src/app/utils/type.interface';
 
 @Component({
@@ -7,17 +11,45 @@ import { postInterface } from 'src/app/utils/type.interface';
   templateUrl: './posts.component.html',
   styleUrls: ['./posts.component.css']
 })
-export class PostsComponent {
+export class PostsComponent implements OnInit {
   @ViewChild('searchValue') seachValue = ''
 
 
-  posts = Allposts
+  posts: postInterface[] = []
+  allPosts: postInterface[] = []
+  startDate!: Date;
+  endDate!: Date;
 
-  constructor() {
-    console.log("posts in parent", this.posts);
+  constructor(private store: Store<AppStateModel>, private postService: PostsService) {
+    // this.store.select(getPosts).subscribe((posts) => {
+    //   console.log("posts in parent", posts);
+    // })
+
 
   }
 
+  onDateChange() {
+    console.log("startDate", this.startDate, "endDate", this.endDate);
+
+    if (!this.startDate || !this.endDate) return;
+
+    const start = new Date(this.startDate).getTime();
+    const end = new Date(this.endDate).getTime();
+
+    this.posts = this.allPosts.filter(post => {
+      if (!post.createdAt) return false;
+      const postDate = new Date(post.createdAt).getTime();
+      return postDate >= start && postDate <= end;
+    });
+  }
+
+  ngOnInit(): void {
+    this.postService.getAllPosts().subscribe((data) => {
+      console.log("posts852", data);
+      this.posts = data
+      this.allPosts = data
+    })
+  }
 
   searchPosts(event: Event) {
 
@@ -25,12 +57,12 @@ export class PostsComponent {
     console.log("searchValue", value.value);
 
     if (value.value) {
-      this.posts = Allposts.filter((x: postInterface) => {
+      this.posts = this.allPosts.filter((x: postInterface) => {
         return x.title.toLowerCase().includes(value.value.toLowerCase()) ||
           x.desc.toLowerCase().includes(value.value.toLowerCase())
       })
     } else {
-      this.posts = Allposts
+      this.posts = this.allPosts
     }
 
   }

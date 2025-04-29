@@ -10,4 +10,14 @@
 
 .card {
     width: 32dvw;
+    height: 70dvh
+}
+
+.mdc-card__media {
+    position: relative;
+    box-sizing: border-box;
+    height: 18rem;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
 }

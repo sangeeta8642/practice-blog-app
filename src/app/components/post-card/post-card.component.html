@@ -12,13 +12,18 @@
             </p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button (click)="viewPost(post)">VIEW</button>
+            <button mat-button (click)="viewPost(post)" [matTooltip]="'Read More'"><mat-icon>visibility</mat-icon></button>
             <ng-container *ngIf="page==='favorites'">
-                <button mat-button (click)="removeFromFvrt(post?.id)">REMOVE</button>
+                <button mat-button (click)="removeFromFvrt(post?.id)" [matTooltip]="'Remove'"><mat-icon>delete</mat-icon></button>
             </ng-container>
-            <ng-container *ngIf="page==='home'">
+            <ng-container *ngIf="page==='home' && user?.role!=='admin'">
                 <!-- <button mat-button (click)="addToFvrt(post?.id)">REMOVE</button> -->
-                <button mat-button (click)="addToFvrt(post?.id)">LIKE</button>
+                <button mat-button (click)="addToFvrt(post?.id)" [matTooltip]="'Like'"><mat-icon>favorite</mat-icon></button>
+            </ng-container>
+            <ng-container *ngIf="page==='admin'">
+                <!-- <button mat-button (click)="addToFvrt(post?.id)">REMOVE</button> -->
+                <button mat-button (click)="updateElemenet(post)"><mat-icon [matTooltip]="'Edit'">create</mat-icon></button>
+                <button mat-button (click)="deletePost(post?.id)"><mat-icon [matTooltip]="'Delete'">delete</mat-icon></button>
             </ng-container>
             <!-- <button mat-button>SHARE</button> -->
         </mat-card-actions>

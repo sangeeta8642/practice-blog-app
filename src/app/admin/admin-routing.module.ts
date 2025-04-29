@@ -6,7 +6,7 @@ import { PostsComponent } from './posts/posts.component';
 const routes: Routes = [
   { path: '', component: PostsComponent },
   // { path: 'create/post', component: CreateUpdatePostComponent },
-  { path: ':title/post', component: CreateUpdatePostComponent }
+  { path: 'post', component: CreateUpdatePostComponent }
 ];
 
 @NgModule({

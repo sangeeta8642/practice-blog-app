@@ -6,8 +6,9 @@ import { isAuthenticate } from 'src/app/auth/auth.guard';
 import { addToFavorites, removeFromFavorites } from 'src/app/ngrx/user/actions/user.actions';
 // import { addToFavorites } from 'src/app/ngrx/user/actions/favorites.actions';
 import { AuthService } from 'src/app/services/auth.service';
+import { PostsService } from 'src/app/services/posts.service';
 // import { addToFavorites } from 'src/app/ngrx/user/actions/user.actions';
-import { postInterface } from 'src/app/utils/type.interface';
+import { postInterface, userInterface } from 'src/app/utils/type.interface';
 
 @Component({
   selector: 'app-post-card',
@@ -18,19 +19,47 @@ import { postInterface } from 'src/app/utils/type.interface';
 export class PostCardComponent implements OnInit {
   @Input() posts!: postInterface[];
   @Input() page!: string;
-
+  user: userInterface | null
 
 
   constructor(
     private router: Router,
     private store: Store<AppStateModel>,
-    private authService: AuthService
+    private authService: AuthService,
+    private postService: PostsService
   ) {
-
+    this.user = this.authService.getUser()
   }
+
+  // getAllPosts() {
+  //     this.postService.getAllPosts().subscribe((data) => {
+
+  //       const user = this.authService.getUser()
+  //       if (user) {
+  //         this.posts = data.filter((x) => x.admin === user?.id)
+  //         this.allPosts = data.filter((x) => x.admin === user?.id)
+  //         console.log("posts852", this.posts, user);
+  //       }
+  //     })
+  //   }
 
   viewPost(post: postInterface) {
     this.router.navigateByUrl('/view-post', { state: post })
+  }
+
+  updateElemenet(element: postInterface) {
+    // this.router.navigateByUrl('/admin/update/post', { state: { element, id: element.id } })
+    this.router.navigate(['/admin', 'post'], { queryParams: { id: element.id } })
+  }
+
+  deletePost(id?: number) {
+    // this.router.navigateByUrl('/view-post', { state: post })
+    this.postService.deletePost(id).subscribe((data) => {
+      alert("post delete successfully")
+      // this.getAllPosts()
+    })
+
+
   }
 
   ngOnInit(): void {

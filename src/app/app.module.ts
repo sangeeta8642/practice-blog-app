@@ -14,6 +14,10 @@ import { EffectsModule } from '@ngrx/effects';
 import { appReducer } from './app.reducer';
 import { UserEffect } from './ngrx/user/effects/user.effect';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { AuthService } from './services/auth.service';
+import { UserService } from './services/user.service';
+import { PostsService } from './services/posts.service';
+import { PostsEffect } from './ngrx/posts/effects/posts.effects';
 
 @NgModule({
   declarations: [
@@ -29,10 +33,10 @@ import { StoreDevtoolsModule } from '@ngrx/store-devtools';
     NoopAnimationsModule,
     MatChipsModule,
     StoreModule.forRoot(appReducer),
-    EffectsModule.forRoot([UserEffect]),
+    EffectsModule.forRoot([UserEffect, PostsEffect]),
     StoreDevtoolsModule.instrument({ logOnly: !isDevMode() })
   ],
-  providers: [],
+  providers: [AuthService, UserService, PostsService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

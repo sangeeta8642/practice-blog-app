@@ -1,6 +1,6 @@
 <main class="cantainer">
   <form class="create-update-form" [formGroup]="postForm" (ngSubmit)="submit()">
-    <mat-label class="title">{{ route }} Post</mat-label>
+    <mat-label class="title">{{ isCreate?'Create':'Update' }} Post</mat-label>
     <mat-form-field class="form-field" appearance="outline">
       <mat-label class="capitalize"> Title </mat-label>
       <input matInput required type="text" formControlName="title" />
@@ -11,8 +11,8 @@
     </mat-form-field>
     <mat-form-field class="form-field" appearance="outline">
       <mat-label> Description </mat-label>
-      <textarea matInput type="text" formControlName="desc"></textarea>
-    </mat-form-field>
+      <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" formControlName="desc" minRows="2"
+        maxRows="10"></textarea> </mat-form-field>
     <mat-form-field class="form-field" appearance="outline">
       <mat-label> Tags (Separated by Commas) </mat-label>
       <input matInput type="text" formControlName="postTag" />

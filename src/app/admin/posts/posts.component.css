@@ -1,0 +1,28 @@
+.mdc-data-table__table {
+    width: 80% !important;
+}
+
+.mat-mdc-tab-body-content {
+    display: flex !important;
+    justify-content: center !important;
+}
+
+.table-section{
+    display: flex;
+    justify-content: center;
+}
+
+td{
+    height: 86px;
+}
+
+.table-section table{
+    min-width: 90%;
+    box-shadow: none;
+   
+}
+
+.image {
+    width: 10rem;
+    height: 5rem;
+}

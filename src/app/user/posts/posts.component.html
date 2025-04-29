@@ -9,6 +9,16 @@
         <form class="form">
             <input #searchValue class="input" type="text" matInput placeholder="Search your interest..."
                 (input)="searchPosts($event)">
+            <mat-form-field>
+                <mat-label>Enter a date range</mat-label>
+                <mat-date-range-input [rangePicker]="picker">
+                    <input matStartDate placeholder="Start date" [(ngModel)]="startDate" name="startDate" (dateChange)="onDateChange()">
+                    <input matEndDate placeholder="End date" [(ngModel)]="endDate" name="endDate" (dateChange)="onDateChange()">
+                </mat-date-range-input>
+                <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+                <mat-date-range-picker #picker (dateChange)="onDateChange()"></mat-date-range-picker>
+            </mat-form-field>
         </form>
     </section>
     <section id="cards">
