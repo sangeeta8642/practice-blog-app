@@ -1,3 +1,5 @@
+
+// USING ANGULAR MODULES & OPTIMIZING APPS USING SHARED MODULES IN ANGULAR
 import { NgModule } from "@angular/core";
 import { PostCardComponent } from '../components/post-card/post-card.component';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
@@ -19,10 +21,12 @@ import { HttpClientModule } from "@angular/common/http";
 import { TextFieldModule } from '@angular/cdk/text-field';
 import { CommonModule } from "@angular/common";
 import { ViewPostComponent } from "../pages/view-post/view-post.component";
+import { ErrorMessageComponent } from '../components/error-message/error-message.component';
 
 @NgModule({
     declarations: [
         PostCardComponent,
+        ErrorMessageComponent,
         // ViewPostComponent
     ],
     imports: [
@@ -52,6 +56,7 @@ import { ViewPostComponent } from "../pages/view-post/view-post.component";
         CommonModule,
         ReactiveFormsModule,
         // PostCardComponent,
+        ErrorMessageComponent,
         MatSlideToggleModule,
         MatTooltipModule,
         MatInputModule,

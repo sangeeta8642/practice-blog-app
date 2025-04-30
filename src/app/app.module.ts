@@ -18,13 +18,15 @@ import { AuthService } from './services/auth.service';
 import { UserService } from './services/user.service';
 import { PostsService } from './services/posts.service';
 import { PostsEffect } from './ngrx/posts/effects/posts.effects';
+import { AdminNamePipe } from './pipes/admin.pipe';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ViewPostComponent,
-    UnAuthComponent
+    UnAuthComponent,
+    AdminNamePipe
   ],
   imports: [
     BrowserModule,
@@ -36,6 +38,8 @@ import { PostsEffect } from './ngrx/posts/effects/posts.effects';
     EffectsModule.forRoot([UserEffect, PostsEffect]),
     StoreDevtoolsModule.instrument({ logOnly: !isDevMode() })
   ],
+
+  // SERVICES & DEPENDENCY INJECTION
   providers: [AuthService, UserService, PostsService],
   bootstrap: [AppComponent]
 })

@@ -1,3 +1,6 @@
+// 4. MODULE
+// 4.2 USER MODULE
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 

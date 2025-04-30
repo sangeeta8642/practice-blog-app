@@ -1,25 +1,54 @@
 <main class="cantainer">
+  <!-- 10. HANDLING FORMS IN ANGULAR APPS -->
+  <!-- 10.2 REACTIVE ANGULAR FORM -->
   <form class="create-update-form" [formGroup]="postForm" (ngSubmit)="submit()">
+    <!-- 5. DATA BINDING -->
+    <!-- 5.2 STRING INTERPOLATION -->
+    <!-- 5.3 ONE-WAY DATA BINDING -->
+    <!-- ANGULAR MATERIAL -->
     <mat-label class="title">{{ isCreate?'Create':'Update' }} Post</mat-label>
+
+    <!-- ANGULAR MATERIAL -->
     <mat-form-field class="form-field" appearance="outline">
       <mat-label class="capitalize"> Title </mat-label>
       <input matInput required type="text" formControlName="title" />
+
+      <!-- VIEW CHILDREN AND CONTENT CHILDREN -->
+      <!-- CONTENT CHILDREN -->
+      <app-error-message [errorMessages]="getErrorMessages('title')"></app-error-message>
     </mat-form-field>
+
     <mat-form-field class="form-field" appearance="outline">
       <mat-label> Image </mat-label>
       <input matInput type="text" formControlName="image" />
+      <!-- VIEW CHILDREN AND CONTENT CHILDREN -->
+      <!-- CONTENT CHILDREN -->
+      <app-error-message [errorMessages]="getErrorMessages('image')"></app-error-message>
     </mat-form-field>
+
     <mat-form-field class="form-field" appearance="outline">
       <mat-label> Description </mat-label>
       <textarea matInput cdkTextareaAutosize #autosize="cdkTextareaAutosize" formControlName="desc" minRows="2"
-        maxRows="10"></textarea> </mat-form-field>
+        maxRows="10"></textarea>
+      <!-- VIEW CHILDREN AND CONTENT CHILDREN -->
+      <!-- CONTENT CHILDREN -->
+      <app-error-message [errorMessages]="getErrorMessages('desc')"></app-error-message>
+    </mat-form-field>
+
     <mat-form-field class="form-field" appearance="outline">
       <mat-label> Tags (Separated by Commas) </mat-label>
       <input matInput type="text" formControlName="postTag" />
+      <!-- VIEW CHILDREN AND CONTENT CHILDREN -->
+      <!-- CONTENT CHILDREN -->
+      <app-error-message [errorMessages]="getErrorMessages('postTag')"></app-error-message>
     </mat-form-field>
+
     <mat-form-field class="form-field" appearance="outline">
       <mat-label> Categories (Separated by Commas) </mat-label>
       <input matInput type="text" formControlName="postCat" />
+      <!-- VIEW CHILDREN AND CONTENT CHILDREN -->
+      <!-- CONTENT CHILDREN -->
+      <app-error-message [errorMessages]="getErrorMessages('postCat')"></app-error-message>
     </mat-form-field>
     <button mat-raised-button color="primary" type="submit">Submit</button>
   </form>

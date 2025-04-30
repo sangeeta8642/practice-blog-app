@@ -1,3 +1,4 @@
+// AUTHENTICATION & ROUTE PROTECTION IN ANGULAR APPS
 import { inject } from "@angular/core"
 import { AuthService } from "../services/auth.service"
 import { CanActivateFn, Router } from "@angular/router";

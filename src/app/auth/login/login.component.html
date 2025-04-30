@@ -1,5 +1,6 @@
 <div class="example-container">
     <div class="form-container">
+        <!-- ANGULAR MATERIAL -->
         <mat-tab-group (selectedTabChange)="onTabChange()">
             <mat-tab label="User Login">
                 <ng-container *ngTemplateOutlet="loginForm;context:{role:'user'}"></ng-container>
@@ -16,10 +17,14 @@
 
 <ng-template #loginForm let-role="role">
     <span class="text-red">{{error}}</span>
+    <!-- 10. HANDLING FORMS IN ANGULAR APPS -->
+    <!-- 10.1 TEMPLATE DRIVEN ANGULAR FORM -->
     <form class="loginForm" (submit)="submit(role)">
         <mat-form-field class="form-field" appearance="outline">
             <mat-label class="capitalize">{{role}} Email
             </mat-label>
+            <!-- 5. DATA BINDING -->
+            <!-- 5.3 TWO-WAY DATA BINDING -->
             <input matInput required [(ngModel)]="email" name="email" type="email">
         </mat-form-field>
         <mat-form-field class="form-field" appearance="outline">

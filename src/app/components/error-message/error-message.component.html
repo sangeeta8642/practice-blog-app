@@ -1,0 +1,4 @@
+<div *ngIf="errorMessages.length > 0" class="error-container">
+    <!-- ANGULAR MATERIAL -->
+    <mat-error *ngFor="let error of errorMessages">{{ error }}</mat-error>
+</div>

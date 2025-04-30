@@ -6,6 +6,9 @@ export interface UserStateModel {
     favorites: (number | undefined)[]
 }
 
+// Store (NgRx Store)
+// the store for the user and their favorite articles
+
 export const initialUserState: UserStateModel = {
     user: null,
     users: [],

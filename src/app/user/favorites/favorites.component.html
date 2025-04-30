@@ -1,5 +1,10 @@
 <section class="d-flex justify-center items-center">
+    <!-- 6. DIRECTIVES AND LIFE CYCLE -->
+    <!-- 6.1. DIRECTIVES(ngIf) -->
     <ng-container *ngIf="posts.length>0;else NoPosts">
+        <!-- 3. COMPONENTS -->
+        <!-- 5. DATA BINDING -->
+        <!-- 5.1 PARENT CHILD COMMUNICATION - (passing the posts and page to the child) -->
         <app-post-card [posts]="posts" [page]="'favorites'"></app-post-card>
     </ng-container>
     <ng-template #NoPosts>

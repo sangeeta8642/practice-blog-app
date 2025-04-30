@@ -1,3 +1,6 @@
+// 4. MODULE
+// 4.1 ADMIN MODULE
+// USING ANGULAR MODULES & OPTIMIZING APPS USING SHARED MODULES IN ANGULAR
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminRoutingModule } from './admin-routing.module';

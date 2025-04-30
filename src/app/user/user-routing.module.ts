@@ -4,6 +4,8 @@ import { PostsComponent } from './posts/posts.component';
 import { FavoritesComponent } from './favorites/favorites.component';
 import { isAuthenticate } from '../auth/auth.guard';
 
+// CHANGING PAGES WITH ROUTING
+// AUTHENTICATION & ROUTE PROTECTION IN ANGULAR APPS
 const routes: Routes = [
   { path: '', component: PostsComponent },
   { path: 'favorites', component: FavoritesComponent, canActivate: [isAuthenticate] }

@@ -6,14 +6,20 @@
             is a place &#44; where ideas take flight, stories come to life, and curiosity knows no
             bounds—welcome!
         </h1>
+        <!-- 10. HANDLING FORMS IN ANGULAR APPS -->
+        <!-- 10.1 TEMPLATE DRIVEN ANGULAR FORM -->
         <form class="form">
             <input #searchValue class="input" type="text" matInput placeholder="Search your interest..."
                 (input)="searchPosts($event)">
+            <!-- ANGULAR MATERIAL -->
             <mat-form-field>
                 <mat-label>Enter a date range</mat-label>
+                <!-- ANGULAR MATERIAL -->
                 <mat-date-range-input [rangePicker]="picker">
-                    <input matStartDate placeholder="Start date" [(ngModel)]="startDate" name="startDate" (dateChange)="onDateChange()">
-                    <input matEndDate placeholder="End date" [(ngModel)]="endDate" name="endDate" (dateChange)="onDateChange()">
+                    <input matStartDate placeholder="Start date" [(ngModel)]="startDate" name="startDate"
+                        (dateChange)="onDateChange()">
+                    <input matEndDate placeholder="End date" [(ngModel)]="endDate" name="endDate"
+                        (dateChange)="onDateChange()">
                 </mat-date-range-input>
                 <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
@@ -22,6 +28,9 @@
         </form>
     </section>
     <section id="cards">
+        <!--.3. COMPONENTS -->
+        <!-- 5. DATA BINDING -->
+        <!-- 5.1 PARENT CHILD COMMUNICATION - (passing the posts and page to the child) -->
         <app-post-card [posts]="posts" [page]="'home'"></app-post-card>
     </section>
 </main>

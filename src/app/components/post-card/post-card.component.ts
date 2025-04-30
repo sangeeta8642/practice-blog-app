@@ -70,6 +70,8 @@ export class PostCardComponent implements OnInit {
 
   async addToFvrt(id: number | undefined) {
     if (await this.authService.isAuthenticate()) {
+
+      // Store (NgRx Store)
       this.store.dispatch(addToFavorites({ id }))
       alert("article added to favorites")
       this.router.navigateByUrl('/favorites')
@@ -78,13 +80,11 @@ export class PostCardComponent implements OnInit {
     }
   }
   async removeFromFvrt(id: number | undefined) {
-    // if (await this.authService.isAuthenticate()) {
+
+    // Store (NgRx Store)
     this.store.dispatch(removeFromFavorites({ id }))
     alert("article removed from favorites")
-    // this.router.navigateByUrl('/favorites')
-    // } else {
-    //   alert("Please login to save your favorites articles")
-    // }
+
   }
 
 }

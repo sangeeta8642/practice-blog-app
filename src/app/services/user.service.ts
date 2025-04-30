@@ -13,6 +13,8 @@ export class UserService {
         private http: HttpClient
     ) { }
 
+
+    // MAKING HTTP REQUESTS
     getUsers(): Observable<userInterface[]> {
         return this.http.get<userInterface[]>(USER_ENDPOINT)
     }

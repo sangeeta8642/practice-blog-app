@@ -12,8 +12,11 @@ import { clearUser, loginUser } from "../ngrx/user/actions/user.actions";
 
 export class AuthService {
     userData: userInterface | undefined
+
+    // RxJS
     private userSubject = new BehaviorSubject<userInterface | null>(null)
 
+    // UNDERSTANDING OBSERVABLE
     user$ = this.userSubject.asObservable()
     // userData 
 
@@ -33,12 +36,13 @@ export class AuthService {
     setUser(user: userInterface) {
         this.userSubject.next(user)
         localStorage.setItem('user', JSON.stringify(user))
-        // this.store.dispatch(loginUser({ user }))
     }
 
     clearUser() {
         this.userSubject.next(null);
         localStorage.removeItem('user')
+
+        // Store (NgRx Store)
         this.store.dispatch(clearUser())
     }
 
@@ -47,6 +51,8 @@ export class AuthService {
     }
 
     async isAuthenticate() {
+
+        // RxJS
         const data = await firstValueFrom(this.userSubject)
         console.log("checking the auth", data);
 
@@ -58,6 +64,7 @@ export class AuthService {
     }
 
     async isAdmin() {
+        // RxJS
         const data = await firstValueFrom(this.userSubject)
 
         if (data?.role === "admin" && await this.isAuthenticate()) {

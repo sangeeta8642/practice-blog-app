@@ -1,9 +1,11 @@
-import { Component } from '@angular/core';
+import { AfterContentChecked, AfterContentInit, AfterViewInit, Component, DoCheck, OnChanges, OnDestroy, OnInit, SimpleChanges } from '@angular/core';
 import { isAdmin } from './auth/auth.guard';
 import { AppStateModel } from './app.reducer';
 import { Store } from '@ngrx/store';
 import { AuthService } from './services/auth.service';
 import { loginUser } from './ngrx/user/actions/user.actions';
+import { Subscription } from 'rxjs';
+import { userInterface } from './utils/type.interface';
 
 @Component({
   selector: 'app-root',
@@ -13,18 +15,31 @@ import { loginUser } from './ngrx/user/actions/user.actions';
 export class AppComponent {
   title = 'my-blog';
 
+  // RxJS
+  userObservable: Subscription
+
+
+  // DIRECTIVES AND LIFE CYCLE
+  //COSTRUCTOR
   constructor(
     private store: Store<AppStateModel>,
     private authService: AuthService
   ) {
-    // console.log("isAdmin", isAdmin);
-    this.authService.user$.subscribe((user) => {
+
+    // Store (NgRx Store)
+    //dispatching the user to store if they present in the localstorage, to maintain the persistancy
+
+    this.userObservable = this.authService.user$.subscribe((user) => {
       console.log("logged in user", user);
 
-      // if (user) {
       this.store.dispatch(loginUser({ user }))
-      // }
     })
 
   }
+
+  // DIRECTIVES AND LIFE CYCLE
+  ngOnDestroy(): void {
+    this.userObservable.unsubscribe()
+  }
+
 }

@@ -2,7 +2,8 @@ import { createAction, props } from "@ngrx/store";
 import { userInterface } from "src/app/utils/type.interface";
 
 export const LOAD_USERS = '[users] load users'
-
+// Store (NgRx Store)
+//actions can be done by the user
 export const getAllUsers = createAction(LOAD_USERS)
 export const getAllUsersSuccess = createAction('[users] load users success', props<{ users: userInterface[] }>())
 export const loginUser = createAction('[users] login user', props<{ user: userInterface | null }>())

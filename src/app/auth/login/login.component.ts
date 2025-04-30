@@ -30,6 +30,7 @@ export class LoginComponent implements OnInit {
     // this.getUsers()
   }
   ngOnInit() {
+    // Store (NgRx Store)
     this.store.dispatch(getAllUsers())
     this.store.select(getUsers).subscribe((data) => {
       this.users = data
@@ -61,6 +62,7 @@ export class LoginComponent implements OnInit {
         const userWithoutPassword = { ...user };
         delete userWithoutPassword.password;
 
+        // Store (NgRx Store)
         this.store.dispatch(loginUser({ user: userWithoutPassword }))
         // localStorage.setItem("user", JSON.stringify(user))
         this.authService.setUser(userWithoutPassword)

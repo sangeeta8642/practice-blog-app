@@ -12,14 +12,19 @@ export class PostsEffect {
     fetchPosts$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(LOAD_POSTS),
+
+            // RxJS
             exhaustMap((actions: postInterface[]) => {
                 console.log("calling post effect");
                 return this.postServices.getAllPosts().pipe(
+
+                    // RxJS
                     map((data) => {
                         console.log("data in posts effect", data, actions);
 
                         return getAllPostsSuccess({ posts: data })
                     }),
+                    // RxJS
                     catchError(() => EMPTY)
                 )
             })

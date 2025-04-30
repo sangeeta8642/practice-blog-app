@@ -1,10 +1,9 @@
 import { createReducer, on, State } from "@ngrx/store";
-import { Action } from "rxjs/internal/scheduler/Action";
 import { initialUserState, UserStateModel } from "../states/user.state";
 import { addToFavorites, clearUser, getAllUsers, getAllUsersSuccess, loginUser, removeFromFavorites } from "../actions/user.actions";
-// import { addToFavorites } from "../actions/favorites.actions";
 
-
+// Store (NgRx Store)
+//reducers for the user actions
 export const _userReducer = createReducer(initialUserState,
     on(getAllUsers, (state) => {
         return {

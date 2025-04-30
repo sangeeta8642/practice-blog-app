@@ -8,7 +8,8 @@
                 Home
             </li>
 
-            <!-- Favorites (non-admin) -->
+            <!-- 6. DIRECTIVES AND LIFE CYCLE -->
+            <!-- 6.1. DIRECTIVES(ngIf) -->
             <ng-container *ngIf="user?.role !== 'admin'; else adminPage">
                 <li class="link" routerLink="/favorites" routerLinkActive="active"
                     [routerLinkActiveOptions]="{exact:true}">
@@ -24,6 +25,8 @@
             </ng-template>
 
             <!-- Auth Links -->
+            <!-- 6. DIRECTIVES AND LIFE CYCLE -->
+            <!-- 6.1. DIRECTIVES(ngIf) -->
             <ng-container *ngIf="user; else login">
                 <li class="link" (click)="logOut()">
                     Log Out
@@ -39,7 +42,18 @@
 
             <!-- Display User Name -->
             <li>
-                <mat-chip color="accent" selected *ngIf="user">
+                <!-- 6. DIRECTIVES AND LIFE CYCLE -->
+                <!-- 6.1. DIRECTIVES(ngIf) -->
+                <!-- 5. DATA BINDING -->
+                <!-- 5.2 STRING INTERPOLATION -->
+                <!-- 5.3 ONE-WAY DATA BINDING -->
+
+                <!-- HOST BINDING AND ATTRIBUTE DIRECTIVES -->
+                <!-- ATTRIBUTE DIRECTIVES -->
+
+                <!-- ANGULAR MATERIAL -->
+                <mat-chip color="accent" selected *ngIf="user"
+                    [ngClass]="user.role === 'admin' ? 'admin-chip' : 'user-chip'">
                     {{ user.name }}
                 </mat-chip>
             </li>

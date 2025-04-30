@@ -11,7 +11,8 @@ import { userInterface } from "src/app/utils/type.interface";
 export class UserEffect {
 
     constructor(private actions$: Actions, private userService: UserService) { }
-
+    // Store (NgRx Store)
+    //the effect to fetch all the user to use these list
     fetchUsers$ = createEffect(() => {
         return this.actions$.pipe(
             ofType(LOAD_USERS), exhaustMap((action: userInterface[]) => {

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostBinding } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
@@ -18,6 +18,16 @@ export class CreateUpdatePostComponent {
   isCreate: boolean | null = null
   element: postInterface | undefined
   elementId: number | null = null
+
+  // HOST BINDING AND ATTRIBUTE DIRECTIVES
+  // HOST BINDING
+  @HostBinding('class.create-mode') get isCreateMode() {
+    return this.isCreate === true;
+  }
+
+  @HostBinding('class.update-mode') get isUpdateMode() {
+    return this.isCreate === false;
+  }
 
   constructor(
     private router: Router,
@@ -47,13 +57,15 @@ export class CreateUpdatePostComponent {
             this.isCreate = true
             this.router.navigateByUrl('/admin/post')
             console.log("element error", err);
-
           }
-        }
-        )
+        })
+      } else {
+        this.isCreate = true
       }
     })
+
     this.user = this.authService.getUser()?.id;
+
     this.postForm = this.fb.group({
       title: ['', Validators.required],
       image: ['', Validators.required],
@@ -62,6 +74,22 @@ export class CreateUpdatePostComponent {
       postCat: ['', Validators.required],
       admin: [this.user],
     });
+  }
+
+  getErrorMessages(controlName: string): string[] {
+    const control = this.postForm.get(controlName);
+    const errorMessages: string[] = [];
+
+    if (control && (control.touched || control.dirty) && control.invalid) {
+      if (control.hasError('required')) {
+        errorMessages.push(`${controlName} is required.`);
+      }
+      if (control.hasError('maxlength')) {
+        errorMessages.push(`${controlName} exceeds the maximum length.`);
+      }
+    }
+
+    return errorMessages;
   }
 
   async submit() {
@@ -93,6 +121,5 @@ export class CreateUpdatePostComponent {
         }
       })
     }
-
   }
 }

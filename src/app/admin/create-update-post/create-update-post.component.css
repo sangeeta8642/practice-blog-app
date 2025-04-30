@@ -24,3 +24,12 @@
 textarea{
   height: auto;
 }
+
+.create-mode {
+  background-color: pink; /* Light blue background for Create */
+}
+
+/* Style when in Update Mode */
+.update-mode {
+  background-color: #e6ffe6; /* Light green background for Update */
+}
