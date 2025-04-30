@@ -69,6 +69,10 @@ export const _userReducer = createReducer(initialUserState,
                 //     ...state.user,
                 //     favorites: userFavorites
                 // }
+                user: {
+                    ...state.user,
+                    favorites: userFavorites
+                }
             } as UserStateModel
             // }
 

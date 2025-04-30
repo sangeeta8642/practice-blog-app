@@ -3,7 +3,7 @@ import { isAdmin } from './auth/auth.guard';
 import { AppStateModel } from './app.reducer';
 import { Store } from '@ngrx/store';
 import { AuthService } from './services/auth.service';
-import { loginUser } from './ngrx/user/actions/user.actions';
+import { addToFavorites, loginUser } from './ngrx/user/actions/user.actions';
 import { Subscription } from 'rxjs';
 import { userInterface } from './utils/type.interface';
 
@@ -33,6 +33,10 @@ export class AppComponent {
       console.log("logged in user", user);
 
       this.store.dispatch(loginUser({ user }))
+
+      for (let id of user?.favorites || []) {
+        this.store.dispatch(addToFavorites({ id }))
+      }
     })
 
   }

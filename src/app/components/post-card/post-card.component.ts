@@ -1,9 +1,11 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Store } from '@ngrx/store';
+import { take } from 'rxjs';
 import { AppStateModel } from 'src/app/app.reducer';
 import { isAuthenticate } from 'src/app/auth/auth.guard';
 import { addToFavorites, removeFromFavorites } from 'src/app/ngrx/user/actions/user.actions';
+import { getUser } from 'src/app/ngrx/user/selectors/user.selector';
 // import { addToFavorites } from 'src/app/ngrx/user/actions/favorites.actions';
 import { AuthService } from 'src/app/services/auth.service';
 import { PostsService } from 'src/app/services/posts.service';
@@ -83,6 +85,13 @@ export class PostCardComponent implements OnInit {
 
     // Store (NgRx Store)
     this.store.dispatch(removeFromFavorites({ id }))
+    this.store.select(getUser).pipe(take(1)).subscribe(async (user) => {
+      // this.user = data as userInterface
+      // console.log("updated user", user);
+      localStorage.removeItem('user')
+      localStorage.setItem('user', JSON.stringify(user))
+
+    })
     alert("article removed from favorites")
 
   }
