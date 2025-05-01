@@ -1,47 +1,73 @@
 <div class="cards">
-    <!-- 6. DIRECTIVES AND LIFE CYCLE -->
-    <!-- 6.1. DIRECTIVES(ngFor) -->
+  <!-- 6. DIRECTIVES AND LIFE CYCLE -->
+  <!-- 6.1. DIRECTIVES(ngFor) -->
 
-    <!-- ANGULAR MATERIAL -->
-    <mat-card class="example-card card" *ngFor="let post of posts">
-        <mat-card-header>
-            <!-- <div mat-card-avatar class="example-header-image"></div> -->
-            <mat-card-title>{{post?.title}}</mat-card-title>
-            <!-- Using Pipes to Transform Output -->
-            <mat-card-subtitle>{{post?.createdAt | date:'dd/MM/yyyy'}}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image [src]="post?.image" [alt]="post?.title">
-        <mat-card-content>
-            <p>
-                {{post?.desc}}
-            </p>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button (click)="viewPost(post)"
-                [matTooltip]="'Read More'"><mat-icon>visibility</mat-icon></button>
-            <!-- 6. DIRECTIVES AND LIFE CYCLE -->
-            <!-- 6.1. DIRECTIVES(ngIf) -->
-            <ng-container *ngIf="page==='favorites'">
-                <button mat-button (click)="removeFromFvrt(post?.id)"
-                    [matTooltip]="'Remove'"><mat-icon>delete</mat-icon></button>
-                <!-- 6. DIRECTIVES AND LIFE CYCLE -->
-                <!-- 6.1. DIRECTIVES(ngIf) -->
-            </ng-container>
-            <ng-container *ngIf="page==='home' && user?.role!=='admin'">
-                <!-- <button mat-button (click)="addToFvrt(post?.id)">REMOVE</button> -->
-                <button mat-button (click)="addToFvrt(post?.id)"
-                    [matTooltip]="'Like'"><mat-icon>favorite</mat-icon></button>
-            </ng-container>
-            <!-- 6. DIRECTIVES AND LIFE CYCLE -->
-            <!-- 6.1. DIRECTIVES(ngIf) -->
-            <ng-container *ngIf="page==='admin'">
-                <!-- <button mat-button (click)="addToFvrt(post?.id)">REMOVE</button> -->
-                <button mat-button (click)="updateElemenet(post)"><mat-icon
-                        [matTooltip]="'Edit'">create</mat-icon></button>
-                <button mat-button (click)="deletePost(post?.id)"><mat-icon
-                        [matTooltip]="'Delete'">delete</mat-icon></button>
-            </ng-container>
-            <!-- <button mat-button>SHARE</button> -->
-        </mat-card-actions>
-    </mat-card>
+  <!-- ANGULAR MATERIAL -->
+  <mat-card class="example-card card" *ngFor="let post of posts">
+    <mat-card-header>
+      <!-- <div mat-card-avatar class="example-header-image"></div> -->
+      <mat-card-title>{{ post?.title }}</mat-card-title>
+      <!-- Using Pipes to Transform Output -->
+      <mat-card-subtitle>{{
+        post?.createdAt | date : "dd/MM/yyyy"
+      }}</mat-card-subtitle>
+    </mat-card-header>
+    <img mat-card-image [src]="post?.image" [alt]="post?.title" />
+
+    <div class="card-body">
+      <mat-card-content>
+        <p [matTooltip]="post?.desc || ''">
+          {{ truncateText(post?.desc) }}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button (click)="viewPost(post)" [matTooltip]="'Read More'">
+          <mat-icon>visibility</mat-icon>
+        </button>
+        <!-- 6. DIRECTIVES AND LIFE CYCLE -->
+        <!-- 6.1. DIRECTIVES(ngIf) -->
+        <ng-container *ngIf="page === 'favorites'">
+          <button
+            mat-button
+            (click)="removeFromFvrt(post?.id)"
+            [matTooltip]="'Remove'"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+          <!-- 6. DIRECTIVES AND LIFE CYCLE -->
+          <!-- 6.1. DIRECTIVES(ngIf) -->
+        </ng-container>
+        <ng-container *ngIf="page === 'home' && user?.role !== 'admin'">
+          <!-- <button mat-button (click)="addToFvrt(post?.id)">REMOVE</button> -->
+          <button
+            mat-button
+            (click)="addToFvrt(post?.id)"
+            [matTooltip]="'Like'"
+          >
+            <mat-icon>favorite</mat-icon>
+          </button>
+        </ng-container>
+        <!-- 6. DIRECTIVES AND LIFE CYCLE -->
+        <!-- 6.1. DIRECTIVES(ngIf) -->
+        <ng-container *ngIf="page === 'admin'">
+          <!-- <button mat-button (click)="addToFvrt(post?.id)">REMOVE</button> -->
+          <button
+            [matTooltip]="'Edit'"
+            mat-button
+            (click)="updateElemenet(post)"
+          >
+            <mat-icon>create</mat-icon>
+          </button>
+          <button
+            [matTooltip]="'Delete'"
+            mat-button
+            (click)="deletePost(post?.id)"
+          >
+            <mat-icon>delete</mat-icon>
+          </button>
+        </ng-container>
+        <!-- <button mat-button>SHARE</button> -->
+      </mat-card-actions>
+    </div>
+  </mat-card>
 </div>

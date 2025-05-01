@@ -1,37 +1,41 @@
-<div class="example-container">
-    <div class="form-container">
-        <!-- ANGULAR MATERIAL -->
-        <mat-tab-group (selectedTabChange)="onTabChange()">
-            <mat-tab label="User Login">
-                <ng-container *ngTemplateOutlet="loginForm;context:{role:'user'}"></ng-container>
-            </mat-tab>
-            <mat-tab label="Admin Login">
-                <ng-container *ngTemplateOutlet="loginForm;context:{role:'admin'}"></ng-container>
-            </mat-tab>
-        </mat-tab-group>
-
-    </div>
+<div class="example-container" *ngIf="!loading">
+  <div class="form-container">
+    <!-- ANGULAR MATERIAL -->
+    <mat-tab-group (selectedTabChange)="onTabChange()">
+      <mat-tab label="User Login">
+        <ng-container
+          *ngTemplateOutlet="loginForm; context: { role: 'user' }"
+        ></ng-container>
+      </mat-tab>
+      <mat-tab label="Admin Login">
+        <ng-container
+          *ngTemplateOutlet="loginForm; context: { role: 'admin' }"
+        ></ng-container>
+      </mat-tab>
+    </mat-tab-group>
+  </div>
 </div>
 
-
-
 <ng-template #loginForm let-role="role">
-    <span class="text-red">{{error}}</span>
-    <!-- 10. HANDLING FORMS IN ANGULAR APPS -->
-    <!-- 10.1 TEMPLATE DRIVEN ANGULAR FORM -->
-    <form class="loginForm" (submit)="submit(role)">
-        <mat-form-field class="form-field" appearance="outline">
-            <mat-label class="capitalize">{{role}} Email
-            </mat-label>
-            <!-- 5. DATA BINDING -->
-            <!-- 5.3 TWO-WAY DATA BINDING -->
-            <input matInput required [(ngModel)]="email" name="email" type="email">
-        </mat-form-field>
-        <mat-form-field class="form-field" appearance="outline">
-            <mat-label> Password
-            </mat-label>
-            <input matInput type="password" [(ngModel)]="password" name="password">
-        </mat-form-field>
-        <button mat-raised-button color="primary" type="submit">Log In</button>
-    </form>
+  <span class="text-red">{{ error }}</span>
+  <!-- 10. HANDLING FORMS IN ANGULAR APPS -->
+  <!-- 10.1 TEMPLATE DRIVEN ANGULAR FORM -->
+
+  <form class="loginForm" (submit)="submit(role)" *ngIf="!loading">
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label class="capitalize">{{ role }} Email </mat-label>
+      <!-- 5. DATA BINDING -->
+      <!-- 5.3 TWO-WAY DATA BINDING -->
+      <input matInput required [(ngModel)]="email" name="email" type="email" />
+    </mat-form-field>
+    <mat-form-field class="form-field" appearance="outline">
+      <mat-label> Password </mat-label>
+      <input matInput type="password" [(ngModel)]="password" name="password" />
+    </mat-form-field>
+    <button mat-raised-button color="primary" type="submit">Log In</button>
+  </form>
 </ng-template>
+
+<div *ngIf="loading"  class="spinner-container d-flex justify-center items-center">
+  <mat-spinner diameter="100" [mode]="'indeterminate'" ></mat-spinner>
+</div>
