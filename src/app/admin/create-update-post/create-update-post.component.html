@@ -50,6 +50,6 @@
       <!-- CONTENT CHILDREN -->
       <app-error-message [errorMessages]="getErrorMessages('postCat')"></app-error-message>
     </mat-form-field>
-    <button mat-raised-button color="primary" type="submit">Submit</button>
+    <button mat-raised-button color="primary" type="submit" [disabled]="!postForm.valid">Submit</button>
   </form>
 </main>
